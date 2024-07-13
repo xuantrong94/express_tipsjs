@@ -1,7 +1,10 @@
 const { default: mongoose } = require('mongoose')
 const { countConnect } = require('../helpers/check.connect')
+const {
+	db: { host, port, user, pass, name },
+} = require('../configs/config.mongodb')
 
-const connectString = `mongodb+srv://nxuantrong3112:trong1234@mycluster.j59yckg.mongodb.net/shopDEV?retryWrites=true&w=majority&appName=MyCluster`
+const connectString = `${host}://${user}:${pass}@mycluster.j59yckg.mongodb.net/${name}?retryWrites=true&w=majority&appName=MyCluster`
 
 class Database {
 	constructor(db) {
@@ -13,11 +16,11 @@ class Database {
 			mongoose.set('debug', { color: true })
 		}
 		mongoose
-      .connect(connectString, {
-        maxPoolSize: 50
-      })
+			.connect(connectString, {
+				maxPoolSize: 50,
+			})
 			.then((_) => {
-				console.log('Connected to MongoDB shopDEV successfully PRO')
+				console.log(`Connected to MongoDB ${name} successfully`)
 				// countConnect()
 			})
 			.catch((error) => console.log('Connect to MongoDB failed', error))
