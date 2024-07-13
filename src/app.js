@@ -4,6 +4,7 @@ const { default: helmet } = require('helmet')
 const morgan = require('morgan')
 require('dotenv').config()
 const { checkOverload } = require('./helpers/check.connect')
+const routes = require('./routes')
 
 const app = express()
 
@@ -16,10 +17,9 @@ app.use(compression())
 
 require('./dbs/init.mongodb')
 // checkOverload()
+
 //TODO routes
-app.get('', (req, res, next) => {
-	return res.status(200).json({ message: 'Welcome to nodejs' })
-})
+app.use('', routes)
 
 //TODO handling errors
 
