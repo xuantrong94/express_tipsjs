@@ -11,7 +11,7 @@ var shopSchema = new mongoose.Schema(
 		name: {
 			type: String,
 			trim: true,
-			maxLength: true,
+			maxLength: 150,
 		},
 		email: {
 			type: String,
@@ -28,7 +28,7 @@ var shopSchema = new mongoose.Schema(
 			default: 'inactive',
 		},
 		verify: {
-			type: Schema.Types.Boolean,
+			type: mongoose.Schema.Types.Boolean,
 			default: false,
 		},
 		roles: {
